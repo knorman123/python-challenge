@@ -1,6 +1,8 @@
 # import dependencies
 import os
 import csv
+import statistics
+from statistics import mode
 
 # path to collect data from the Resources folder
 csv_file = os.path.join('PyPoll','Resources', 'election_data_reduced.csv')
@@ -15,7 +17,7 @@ with open(csv_file, 'r') as csvfile:
     header = next(csvreader)
     # iterate through file once for the length of the list, in order to get the total number of votes cast
     total_voters = len(list(csvreader))
-    print(total_voters)
+    
     # start the iteration again for the For Loop calculations
     csvfile.seek(0)
     header = next(csvreader)
@@ -35,13 +37,14 @@ with open(csv_file, 'r') as csvfile:
         for votes in candidate_list:
             total_votes = vote_list.count(candidate_list[num_of_candidates])
             percent_votes = total_votes/total_voters
-            print(f"{candidate_list[num_of_candidates]}: ({total_votes})" )
+            percentage = '{:.3%}'.format(percent_votes)
+            print(f"{candidate_list[num_of_candidates]}: {percentage} ({total_votes})" )
             num_of_candidates += 1
-        
+        return None
+    
+    winner = mode(vote_list)
+    
 
-
-    print(candidate_list)
-
-    print("Election Results")
+    print(f"Election Results\n------------------------------\nTotal Votes: {total_voters}\n------------------------------")
     candidate_stats()
-    print("-----------------")
+    print(f"------------------------------\nWinner: {winner}\n------------------------------")
