@@ -1,6 +1,7 @@
 # import dependencies
 import os
 import csv
+import sys
 import statistics
 from statistics import mode
 
@@ -44,7 +45,10 @@ with open(csv_file, 'r') as csvfile:
     
     winner = mode(vote_list)
     
+    sys.stdout = open('election_results.txt', 'w')
 
     print(f"Election Results\n------------------------------\nTotal Votes: {total_voters}\n------------------------------")
     candidate_stats()
     print(f"------------------------------\nWinner: {winner}\n------------------------------")
+
+    sys.stdout.close()
