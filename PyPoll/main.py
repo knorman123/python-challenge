@@ -47,8 +47,13 @@ with open(csv_file, 'r') as csvfile:
     # use statistics import to find the mode of the vote list created above
     winner = mode(vote_list)
     
+    # print to terminal
+    print(f"Election Results\n------------------------------\nTotal Votes: {total_voters}\n------------------------------")
+    candidate_stats()
+    print(f"------------------------------\nWinner: {winner}\n------------------------------")
+    
     # write output to a txt file
-    sys.stdout = open('election_results.txt', 'w')
+    sys.stdout = open('PyPoll/Analysis/election_results.txt', 'w')
 
     print(f"Election Results\n------------------------------\nTotal Votes: {total_voters}\n------------------------------")
     candidate_stats()
