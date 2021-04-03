@@ -3,7 +3,7 @@ import os
 import csv
 
 # path to collect data from the Resources folder
-csv_file = os.path.join('PyPoll','Resources', 'election_data.csv')
+csv_file = os.path.join('PyPoll','Resources', 'election_data_reduced.csv')
 
 
 #total_profit_losses = 0
@@ -20,8 +20,9 @@ with open(csv_file, 'r') as csvfile:
     csvfile.seek(0)
     header = next(csvreader)
 
-    #candidate_list = []
-    #for row in csvreader:
-        #if row[0] not in candidate_list:
-            #candidate_list.append(row[0])
-    #print(candidate_list)
+    candidate_list = []
+    for row in csvreader:
+        if row[2] not in candidate_list:
+            candidate_list.append(row[2])
+        
+    print(candidate_list)
